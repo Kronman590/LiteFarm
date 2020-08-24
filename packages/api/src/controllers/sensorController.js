@@ -18,18 +18,20 @@ const sensorModel = require('../models/sensorModel');
 
 const { transaction } = require('objection');
 const { Model } = require('objection');
+const uuidv4 = require('uuid/v4');
 
 class sensorController extends baseController {
   static addSensor() {
     return async (req, res) => {
       const trx = await transaction.start(Model.knex());
       try {
+        const id_column = sensorModel.idColumn;
+        req.body[id_column] = uuidv4();
         const result = await baseController.postWithResponse(sensorModel, req.body, trx);
         await trx.commit();
         res.status(201).send(result);
       } 
       catch (error) {
-        console.log('sensor post fail: ', error.message);
         //handle more exceptions
         await trx.rollback();
         res.status(400).json({

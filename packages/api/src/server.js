@@ -62,6 +62,7 @@ const userFarmDataRoute = require('./routes/userFarmDataRoute');
 const userFarmRoute = require('./routes/userFarmRoute');
 const rolesRoutes = require('./routes/rolesRoute');
 const signUpRoutes = require('./routes/signUpRoute');
+const sensorRoutes = require('./routes/sensorRoute');
 
 const waterBalanceScheduler = require('./jobs/waterBalance/waterBalance');
 const nitrogenBalanceScheduler = require('./jobs/nitrogenBalance/nitrogenBalance');
@@ -100,6 +101,7 @@ app.use(bodyParser.json())
   .use('/field', fieldRoutes)
   .use('/plan', planRoutes)
   .use('/sale', saleRoutes)
+  .use('/sensor', sensorRoutes)
   //.use('/shift_task', shiftTaskRoutes)
   .use('/task_type', taskTypeRoutes)
   .use('/todo', todoRoutes)

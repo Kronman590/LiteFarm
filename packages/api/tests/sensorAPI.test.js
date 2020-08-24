@@ -43,33 +43,33 @@ describe('Testing sensor API', () => {
 
   let farm_id = null, sensor_id, field_id = null;
 
-  // test('POST farm happy land to DB to setup test', (done) => {
-  //   chai.request(server).post('/farm')
-  //     .set('content-type', 'application/json')
-  //     .set('Authorization', 'Bearer '+token)
-  //     .send(dummy.mockFarm)
-  //     .end((err, res) => {
-  //       chai_expect(err).to.be.null;
-  //       chai_expect(res.status).to.equal(201);
-  //       chai.expect(res.body).to.have.property('farm_id');
-  //       farm_id = res.body.farm_id;
-  //       done();
-  //     });
-  // });
+  test('POST farm happy land to DB to setup test', (done) => {
+    chai.request(server).post('/farm')
+      .set('content-type', 'application/json')
+      .set('Authorization', 'Bearer '+token)
+      .send(dummy.mockFarm)
+      .end((err, res) => {
+        chai_expect(err).to.be.null;
+        chai_expect(res.status).to.equal(201);
+        chai.expect(res.body).to.have.property('farm_id');
+        farm_id = res.body.farm_id;
+        done();
+      });
+  });
 
-  // test('POST field in happy land to DB to setup test', (done) => {
-  //   chai.request(server).post('/field')
-  //     .set('content-type', 'application/json')
-  //     .set('Authorization', 'Bearer '+token)
-  //     .send(dummy.mockField)
-  //     .end((err, res) => {
-  //       chai_expect(err).to.be.null;
-  //       chai_expect(res.status).to.equal(201);
-  //       chai.expect(res.body).to.have.property('field_id');
-  //       field_id = res.body.field_id;
-  //       done();
-  //     });
-  // });
+  test('POST field in happy land to DB to setup test', (done) => {
+    chai.request(server).post('/field')
+      .set('content-type', 'application/json')
+      .set('Authorization', 'Bearer '+token)
+      .send(dummy.mockField)
+      .end((err, res) => {
+        chai_expect(err).to.be.null;
+        chai_expect(res.status).to.equal(201);
+        chai.expect(res.body).to.have.property('field_id');
+        field_id = res.body.field_id;
+        done();
+      });
+  });
 
    test('POST a sensor to DB', (done) => {
     let sensor = mockSensor;

@@ -33,3 +33,5 @@ router.put('/:id', checkEditPrivilege, checkScope(['edit:sensor']), sensorContro
 router.delete('/:id', checkEditPrivilege, checkScope(['delete:sensor']), sensorController.deleteSensor());
 
 module.exports = router;
+
+// checkEditPrivilege caused infinite loop during tests, intended to check if user can create/edit/delete things on given farm
