@@ -541,6 +541,18 @@ exports.up = async function (knex, Promise) {
       table.float('cec');
       table.enu('units', ['percentage', 'mg/kg', 'ounces/lb']);
     }),
+
+    knex.schema.createTable('sensor', function (table) {
+      table.uuid('sensor_id').primary().defaultTo(knex.raw('uuid_generate_v1()'));
+      table.uuid('field_id')
+        .references('field_id')
+        .inTable('field');
+      table.uuid('farm_id')
+        .references('farm_id')
+        .inTable('farm');
+      table.unique(['sensor_id', 'field_id', 'farm_id']);
+      table.jsonb('location');
+    }),
   ])
 };
 
@@ -583,5 +595,6 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTable('activityLog'),
     knex.schema.dropTable('users'),
     knex.schema.dropTable('farm'),
+    knex.schema.dropTable('sensor'),
   ])
 };
