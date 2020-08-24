@@ -21,6 +21,7 @@ const { Model } = require('objection');
 const uuidv4 = require('uuid/v4');
 
 class sensorController extends baseController {
+  //take sensor info from request, generate sensor_id, and add to database (201 if success, 400 if fail)
   static addSensor() {
     return async (req, res) => {
       const trx = await transaction.start(Model.knex());
@@ -40,7 +41,7 @@ class sensorController extends baseController {
       }
     };
   }
-
+  //get sensor id from request and retrieve sensor from database (200 if success, 400 if fail, 404 if not found)
   static getSensorbyID() {
     return async (req, res) => {
       try {
@@ -61,7 +62,7 @@ class sensorController extends baseController {
       }
     };
   }
-
+  //get field id from request and retrieve sensor from database associated to field (200 if success, 400 if fail, 404 if not found)
   static getAllSensorsinField(){
     return async (req, res) => {
       try {
@@ -82,7 +83,7 @@ class sensorController extends baseController {
       }
     }
   }
-
+  //get farm id from request and retrieve sensor from database associated to farm (200 if success, 400 if fail, 404 if not found)
   static getAllSensorsinFarm(){
     return async (req, res) => {
       try {
@@ -103,7 +104,7 @@ class sensorController extends baseController {
       }
     }
   }
-
+  //get updated information from request, and update sensor of matching sensor id in database (200 if success, 400 if fail)
   static updateSensor(){
     return async (req, res) => {
       const trx = await transaction.start(Model.knex());
@@ -125,7 +126,7 @@ class sensorController extends baseController {
       }
     }
   }
-
+  //remove sensor from database with id from requeste (200 if success, 400 if fail)
   static deleteSensor(){
     return async (req, res) => {
       const trx = await transaction.start(Model.knex());

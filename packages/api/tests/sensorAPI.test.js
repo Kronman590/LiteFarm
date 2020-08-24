@@ -42,7 +42,7 @@ beforeAll(() => {
 describe('Testing sensor API', () => {
 
   let farm_id = null, sensor_id, field_id = null;
-
+  //create farm for initial state
   test('POST farm happy land to DB to setup test', (done) => {
     chai.request(server).post('/farm')
       .set('content-type', 'application/json')
@@ -56,7 +56,7 @@ describe('Testing sensor API', () => {
         done();
       });
   });
-
+  //create field for initial state
   test('POST field in happy land to DB to setup test', (done) => {
     chai.request(server).post('/field')
       .set('content-type', 'application/json')
@@ -70,7 +70,7 @@ describe('Testing sensor API', () => {
         done();
       });
   });
-
+  //test adding sensor to field
    test('POST a sensor to DB', (done) => {
     let sensor = mockSensor;
     sensor.farm_id = farm_id;
@@ -88,7 +88,7 @@ describe('Testing sensor API', () => {
         done();
       });
   });
-
+  //test getting sensor from farm id
   test('GET sensors associated with farm id from DB', (done) => {
     chai.request(server).get('/sensor/farm/' + farm_id)
       .set('content-type', 'application/json')
@@ -101,7 +101,7 @@ describe('Testing sensor API', () => {
         done();
       });
   });
-
+  //test getting sensor from field id
   test('GET sensors associated with field id from DB', (done) => {
     chai.request(server).get('/sensor/field/' + field_id)
       .set('content-type', 'application/json')
@@ -114,7 +114,7 @@ describe('Testing sensor API', () => {
         done();
       });
   });
-
+  //test getting sensor from sensor id
   test('GET sensors using sensor id from DB', (done) => {
     chai.request(server).get('/sensor/' + sensor_id)
       .set('content-type', 'application/json')
@@ -127,7 +127,7 @@ describe('Testing sensor API', () => {
         done();
       });
   });
-
+  //test updating sensor info
   test('PUT sensor 123 with new lat', (done) => {
     let sensor = mockSensor2;
     sensor.farm_id = farm_id;
@@ -142,7 +142,7 @@ describe('Testing sensor API', () => {
         done();
       });
   });
-
+  //test getting sensor that doesn't exist
   test('PUT sensor baa15588-4ddb-4ab1-b33e-f3e0a66966ea(does not exist)', (done) => {
     let sensor = mockSensor;
     sensor.farm_id = farm_id;
@@ -156,7 +156,7 @@ describe('Testing sensor API', () => {
         done();
       });
   });
-
+  //test removing sensor from database
   test('DELETE sensor should get 200' , (done) => {
     chai.request(server).del('/sensor/' + sensor_id)
       .set('content-type', 'application/json')
@@ -167,7 +167,7 @@ describe('Testing sensor API', () => {
         done();
       });
   });
-
+  //test if sensor was truly removed
   test('GET sensor 123 should get 404' , (done) => {
     chai.request(server).get('/sensor/' + sensor_id)
       .set('content-type', 'application/json')
