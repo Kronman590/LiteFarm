@@ -541,7 +541,7 @@ exports.up = async function (knex, Promise) {
       table.float('cec');
       table.enu('units', ['percentage', 'mg/kg', 'ounces/lb']);
     }),
-
+    // add sensor table to database upon creation
     knex.schema.createTable('sensor', function (table) {
       table.uuid('sensor_id').primary().defaultTo(knex.raw('uuid_generate_v1()'));
       table.uuid('field_id')
@@ -595,6 +595,7 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTable('activityLog'),
     knex.schema.dropTable('users'),
     knex.schema.dropTable('farm'),
+    //drop sensor table
     knex.schema.dropTable('sensor'),
   ])
 };

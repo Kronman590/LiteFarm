@@ -33,35 +33,22 @@ class Sensor extends Model {
       required: ['location', 'farm_id', 'field_id'],
 
       properties: {
-        sensor_id: { type: 'string', minLength: 1, maxLength: 255 },
-        sensor_name: { type: 'string' },
-        location: {
+        sensor_id: { type: 'string', minLength: 1, maxLength: 255 }, //generated id to identify sensor
+        sensor_name: { type: 'string' }, //name of sensor for user to identify sensor
+        location: { //geographical location of sensor in field
           type: 'object',
           required: ['lat', 'lng'],
           properties: {
-            lat: { type: 'number' },
-            lng: { type: 'number' },
+            lat: { type: 'number' }, //latitude
+            lng: { type: 'number' }, //longitude
           },
         },
-        farm_id: { type: 'string', minLength: 1, maxLength: 255 },
-        field_id: { type: 'string', minLength: 1, maxLength: 255 },
+        farm_id: { type: 'string', minLength: 1, maxLength: 255 }, //farm id that sensor is associated to
+        field_id: { type: 'string', minLength: 1, maxLength: 255 }, //field id that sensor is associated to
       },
     };
   }
 
-//   static get relationMappings() {
-//     // Import models here to prevent require loops.
-//     return {
-//       userTodo:{
-//         modelClass:require('./userTodo.js'),
-//         relation:Model.HasManyRelation,
-//         join:{
-//           from:'userTodo.todo_id',
-//           to:'todo.todo_id',
-//         },
-//       },
-//     }
-//   }
 }
 
 module.exports = Sensor;
